@@ -1,0 +1,191 @@
+---
+title: "property_values"
+output: html_notebook
+---
+
+rough working notebook to verify code working prior to using it in shiny app 
+
+```{r}
+library(tidyverse)
+library(lubridate)
+```
+
+
+```{r}
+values <- read_csv('../property_values/data/TN_sales.csv')
+values
+```
+
+
+
+
+```{r}
+region = 'Dyersburg, TN'
+
+values |> 
+  filter(parent_metro_region == region) |> 
+  ggplot(aes(x = period_end, y = estimated_value)) + 
+  geom_line()
+```
+
+
+
+
+```{r}
+
+values |> 
+  filter(parent_metro_region == region) |> 
+  ggplot(aes(x = period_end, y = homes_sold)) + 
+  geom_line()
+
+```
+
+```{r}
+
+values |> 
+  select(period_end, homes_sold) |> 
+  group_by(period_end) |> 
+  summarize(total_sales = sum(homes_sold)) |> 
+  
+  ggplot(aes(x = period_end, y = total_sales)) +
+  geom_line()
+```
+
+
+exploring date functions
+
+```{r}
+values |> 
+  summarize(min_date = min(period_end)) |> 
+  pull(min_date)
+
+values |> 
+  summarize(max_date = max(period_end)) |> 
+  pull(max_date)
+
+```
+
+
+
+only need to use the last date of the month, but allowing all dates to be entered, testing function to see how it works 
+
+```{r}
+ceiling_date(as.Date('2021-01-15'), "month") - days(1)
+```
+
+
+
+```{r}
+    input <- 'Nashville, TN'
+
+    region <- values
+
+    if(input != 'All'){
+      region <- region |>
+        filter(parent_metro_region == input)
+    }
+region
+```
+
+
+
+```{r}
+    region |>
+      filter(period_end >= '2015-01-31',
+             period_end <= '2020-01-31') |>
+      ggplot(aes(x = period_end, y = homes_sold)) +
+      geom_line()
+    
+```
+
+
+
+
+
+```{r}
+    
+
+     region |>
+        group_by(period_end) |> 
+        summarize(estimated_value = mean(estimated_value, na.rm = TRUE))
+
+```
+
+
+
+
+```{r}
+region |> 
+    mutate(month_int = month(period_end), 
+          month_name = month(period_end, label = TRUE, abbr = TRUE), 
+          year = year(period_end))
+```
+
+
+```{r}
+region
+```
+
+
+
+```{r}
+cor_dis <- values |> 
+  group_by(parent_metro_region) |> 
+  summarize(cor_value = cor(estimated_value, homes_sold, use = 'complete.obs'))
+cor_dis
+```
+
+
+```{r}
+cor_dis |> 
+  arrange(cor_value)
+```
+
+
+
+```{r}
+values |>
+  mutate(month = month(period_end, label = TRUE, abbr = TRUE)) |> 
+  group_by(parent_metro_region, month) |> 
+  summarize(cor_value = cor(estimated_value, homes_sold, use = 'complete.obs'))
+# cor_dis
+```
+
+
+```{r}
+values_test <- values |> 
+  mutate(
+    month_int = month(period_end),
+    month_name = month(period_end, label = TRUE, abbr = TRUE),
+    year = year(period_end)
+  )
+values_test
+```
+
+
+
+
+
+```{r}
+values_test  |> 
+  group_by(year) |> 
+  filter(period_end >= '2020-01-01',
+         parent_metro_region == 'Morristown, TN') |> 
+   summarize(avg_value = mean(estimated_value, na.rm = TRUE))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
