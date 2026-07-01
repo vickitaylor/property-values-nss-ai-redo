@@ -1,0 +1,48 @@
+table 'Agg Type'
+	lineageTag: b1bb0e0b-3dfc-4a6e-8c64-a02893f34ca6
+
+	column 'Agg Type'
+		lineageTag: e1fb0625-09d9-4cae-8d2e-927b549e87f8
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Agg Type Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Agg Type Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Agg Type Fields'
+		isHidden
+		lineageTag: 6d5b31e8-c145-4a49-8813-94ca5403a9d2
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Agg Type Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Agg Type Order'
+		isHidden
+		formatString: 0
+		lineageTag: e3425f2d-d807-4e18-a6d1-8f0385aed221
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Agg Type' = calculated
+		mode: import
+		source =
+				{
+				    ("Total Sales", NAMEOF('MeasureTable'[Total Sales]), 0),
+				    ("Avg Sales Price", NAMEOF('MeasureTable'[Avg Sales Price]), 1)
+				}
+
+	annotation PBI_Id = 7289e66c8276408eb23ff74796de6be5
+

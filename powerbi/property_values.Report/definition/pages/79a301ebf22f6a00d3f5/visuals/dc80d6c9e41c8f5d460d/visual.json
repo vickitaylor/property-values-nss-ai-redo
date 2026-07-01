@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "dc80d6c9e41c8f5d460d",
+  "position": {
+    "x": 433,
+    "y": 82,
+    "z": 4000,
+    "height": 120,
+    "width": 413,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "card",
+    "autoSelectVisualType": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureTable"
+                    }
+                  },
+                  "Property": "Avg Value Change"
+                }
+              },
+              "queryRef": "MeasureTable.Avg Value Change",
+              "nativeQueryRef": "Avg Value Change"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

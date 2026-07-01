@@ -1,0 +1,88 @@
+table MeasureTable
+	lineageTag: 80da8b04-ccbc-431b-8ecf-71ec4e3b607b
+
+	measure 'Annual Growth Rate' = ```
+			
+			VAR StartValue = CALCULATE(AVERAGE(TN_property_values[estimated_value]), FILTER(TN_property_values, TN_property_values[year] = MIN(TN_property_values[year])))
+			VAR EndValue = CALCULATE(AVERAGE(TN_property_values[estimated_value]), FILTER(TN_property_values, TN_property_values[year] = MAX(TN_property_values[year])))
+			VAR NumYears = MAX(TN_property_values[year]) - MIN(TN_property_values[year])
+			
+			RETURN IF(NumYears = 0, BLANK(), (EndValue / StartValue) ^ (1 / NumYears) - 1)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e2fba32d-e6e3-4cd1-aab1-ecdfe33eb644
+
+	measure 'Avg Value Change' = ```
+			
+			VAR StartValue = CALCULATE(AVERAGE(TN_property_values[estimated_value]), FILTER(TN_property_values, TN_property_values[year] = MIN(TN_property_values[year])))
+			VAR EndValue = CALCULATE(AVERAGE(TN_property_values[estimated_value]), FILTER(TN_property_values, TN_property_values[year] = MAX(TN_property_values[year])))
+			
+			RETURN EndValue - StartValue
+			
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a07bee1e-a8c3-4ffd-80bc-2e70a1916de9
+
+	measure Correlation = ```
+			
+			VAR n = COUNTROWS(TN_property_values)
+			VAR TotalX = SUM(TN_property_values[estimated_value])
+			VAR TotalY = SUM(TN_property_values[homes_sold])
+			VAR TotalXY = SUMX(TN_property_values, TN_property_values[estimated_value] * TN_property_values[homes_sold])
+			VAR TotalX2 = SUMX(TN_property_values, TN_property_values[estimated_value] ^ 2)
+			VAR TotalY2 = SUMX(TN_property_values, TN_property_values[homes_sold] ^ 2)
+			
+			RETURN DIVIDE(n * TotalXY - TotalX * TotalY, SQRT((n * TotalX2 - TotalX ^ 2) * (n * TotalY2 - TotalY ^ 2)))
+			
+			```
+		lineageTag: 1b60aefd-c09d-4502-b93f-5474f53a74b8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Sales' = ```
+			SUM(TN_property_values[homes_sold])
+			
+			```
+		formatString: 0
+		lineageTag: ed9a92dc-256a-43fa-b71c-d377f457f00a
+
+	measure 'Avg Sales Price' = ```
+			AVERAGE(TN_property_values[median_sale_price])
+			
+			```
+		lineageTag: 4c955767-4525-4068-9d93-1b0107e91ad2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Chart Title' = ```
+			
+			VAR _selected = SELECTEDVALUE('Agg Type'[Agg Type Fields], "'MeasureTable'[Total Sales]")
+			RETURN
+			IF(CONTAINSSTRING(_selected, "[Avg Sales Price]"), "Average Sales Price by Month", "Total Sales by Month")
+			
+			```
+		lineageTag: 34f7b45e-5f90-4f26-9e32-32735e248130
+
+	measure 'Page Title' =
+			VAR _selected = SELECTEDVALUE('Agg Type'[Agg Type Fields], "'MeasureTable'[Total Sales]")
+			RETURN
+			IF(CONTAINSSTRING(_selected, "[Avg Sales Price]"), "Avg Sales Price", "Total Sales")
+		lineageTag: 8f8f0c7a-2b20-4d4b-8ff9-4ed5ecb6d2b1
+
+	column Value
+		isHidden
+		formatString: 0
+		lineageTag: 00db503d-be68-4025-bf98-8b46e9d62bf4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasureTable = calculated
+		mode: import
+		source = {BLANK()}
+
+	annotation PBI_Id = 2b4cdf59e4404c5698055d24905fb770
+

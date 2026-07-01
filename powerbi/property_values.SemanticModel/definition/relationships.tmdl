@@ -1,0 +1,5 @@
+relationship 6877abb9-562b-4960-b023-04695dbf77d3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: TN_property_values.period_end
+	toColumn: LocalDateTable_65814d8b-f205-47c6-9532-b4f56a62f5d3.Date
+

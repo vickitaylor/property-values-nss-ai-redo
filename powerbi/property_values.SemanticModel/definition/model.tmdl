@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["TN_property_values"]
+
+ref table TN_property_values
+ref table DateTableTemplate_1bd0be95-cd50-41bf-ba58-70ac98369f2b
+ref table LocalDateTable_65814d8b-f205-47c6-9532-b4f56a62f5d3
+ref table MeasureTable
+ref table 'Agg Type'
+
+ref cultureInfo en-US
+

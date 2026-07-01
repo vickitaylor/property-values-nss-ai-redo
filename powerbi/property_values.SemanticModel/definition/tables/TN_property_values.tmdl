@@ -1,0 +1,206 @@
+table TN_property_values
+	lineageTag: f3d43b6b-4094-458d-9cff-2f8a2f1ce222
+
+	column period_end
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 41259be0-8671-473e-8261-b6fd73e74539
+		summarizeBy: none
+		sourceColumn: period_end
+
+		variation Variation
+			isDefault
+			relationship: 6877abb9-562b-4960-b023-04695dbf77d3
+			defaultHierarchy: LocalDateTable_65814d8b-f205-47c6-9532-b4f56a62f5d3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column state_code
+		dataType: string
+		lineageTag: 6807194d-0c5e-43a2-94eb-a4affcd36c56
+		summarizeBy: none
+		sourceColumn: state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_metro_region
+		dataType: string
+		lineageTag: 7e415b5e-280f-47d6-be8b-976817a1ab11
+		summarizeBy: none
+		sourceColumn: parent_metro_region
+
+		annotation SummarizationSetBy = Automatic
+
+	column property_type
+		dataType: string
+		lineageTag: c17f02b3-028a-4afa-a9df-58e6e5d91c8b
+		summarizeBy: none
+		sourceColumn: property_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column median_sale_price
+		dataType: double
+		lineageTag: 1c0aa158-52e5-47b4-a0d6-9c3b13612526
+		summarizeBy: sum
+		sourceColumn: median_sale_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_list_price
+		dataType: double
+		lineageTag: b6059027-e538-420c-982d-2625b906578c
+		summarizeBy: sum
+		sourceColumn: median_list_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column homes_sold
+		dataType: int64
+		lineageTag: dad8af5c-214a-41c3-a41a-56c1133ffd7e
+		summarizeBy: sum
+		sourceColumn: homes_sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column new_listings
+		dataType: int64
+		lineageTag: a0e91305-20fc-4319-a4a7-b91dde424e30
+		summarizeBy: sum
+		sourceColumn: new_listings
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inventory
+		dataType: int64
+		lineageTag: 19225543-25f2-4bfb-bb15-13f33e444d64
+		summarizeBy: sum
+		sourceColumn: inventory
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column months_of_supply
+		dataType: double
+		lineageTag: ad2e1904-b6d9-47cb-b71a-b1f3988483f8
+		summarizeBy: sum
+		sourceColumn: months_of_supply
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_dom
+		dataType: double
+		lineageTag: e97403ad-fa70-47fc-bdb8-a2854ad13550
+		summarizeBy: sum
+		sourceColumn: median_dom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_sale_to_list
+		dataType: double
+		lineageTag: a305b59a-b6b2-4655-bdf4-5008bb52266d
+		summarizeBy: sum
+		sourceColumn: avg_sale_to_list
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sold_above_list
+		dataType: double
+		lineageTag: c8cb1160-a5c6-45d0-a9f2-f0869a72af9f
+		summarizeBy: sum
+		sourceColumn: sold_above_list
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column price_drops
+		dataType: double
+		lineageTag: 285855b6-b9c9-4200-afa9-714a01c3ca34
+		summarizeBy: sum
+		sourceColumn: price_drops
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column off_market_in_two_weeks
+		dataType: double
+		lineageTag: 88a3e373-7ca6-40cc-ba61-23ec4ceb0eb8
+		summarizeBy: sum
+		sourceColumn: off_market_in_two_weeks
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column estimated_value
+		dataType: double
+		lineageTag: 74c4fca9-751d-4ad9-9f42-e3cae4e76b80
+		summarizeBy: sum
+		sourceColumn: estimated_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: fc99efd4-6e72-4953-9768-7c29d8421399
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: 03a29bce-3461-4bcd-a724-7073ac0eeb46
+		summarizeBy: none
+		sourceColumn: month_name
+		sortByColumn: month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: b7ebbb00-a517-4ebb-b4d3-e857890c99b8
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TN_property_values = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Users\blond\Documents\NssAIClass\property-values\data\processed\TN_property_values.csv"), [Delimiter = ",", Columns = 19, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"period_end", type date}, {"state_code", type text}, {"parent_metro_region", type text}, {"property_type", type text}, {"median_sale_price", type number}, {"median_list_price", type number}, {"homes_sold", Int64.Type}, {"new_listings", Int64.Type}, {"inventory", Int64.Type}, {"months_of_supply", type number}, {"median_dom", type number}, {"avg_sale_to_list", type number}, {"sold_above_list", type number}, {"price_drops", type number}, {"off_market_in_two_weeks", type number}, {"estimated_value", type number}, {"month", Int64.Type}, {"month_name", type text}, {"year", Int64.Type}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
