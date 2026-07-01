@@ -97,13 +97,13 @@ This section reflects the actual workflow used in this project.
 - Zillow Home Value Index (ZHVI): https://www.zillow.com/research/data/ (data as of 05/31/2026)
 - Redfin Metro Housing Data: https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz (data as of 05/31/2026)
 
-## Limitations (In Progress)
+## Limitations
 This project is still being refined. Current limitations include:
 - Time-comparison detail is high-level and not yet fully logged by phase
 - Some report polish required iterative manual fixes after AI-generated changes
 - Data files and update steps are still manually brought into parts of the workflow
 
-## Lessons Learned (Draft)
+## Lessons Learned 
 - AI can dramatically compress the first 70-80% of recreation work.
 - The final 20-30% (fit, polish, behavior details) still needs focused human validation.
 - Prompt quality and clear acceptance criteria matter more than tool choice.
