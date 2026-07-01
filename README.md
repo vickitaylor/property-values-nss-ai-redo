@@ -124,5 +124,6 @@ The process was faster overall, but this specific update cycle had real quality 
 - Keep a short acceptance checklist and stop edits once all items pass.
 
 ## Next Updates
+- Fix UI to be standardized accross the pages, left as is for now to show the final output.
 - Add a proper date table to the semantic model to support time intelligence
 - Reduce manual file handling by adding a more automated data ingestion and refresh workflow
